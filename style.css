@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+/* .main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+} */
+.main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(26, 26, 26, 1); /* Dark gray with full opacity */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto; /* Center the row */
+}
+
+.box {
+    padding: 10px;
+    width: calc(50% - 20px);
+    flex-basis: calc(50% - 20px);
+    max-width: 300px;
+    height: 400px;
+    border-radius: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 4px 5px rgb(0 0 0 / 20%);
+}
+
+.box .overlay {
+    width: 100%;
+    max-height: 100%;
+    min-height: auto;
+    position: absolute;
+    bottom: -100%;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px 10px 0px 0px;
+    left: 0;
+    transition: bottom 0.5s ease;
+    background-color: white;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box:hover .overlay {
+    bottom: 0%;
+}
+
+.box span {
+    color: orange;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.overlay h2 {
+    margin-bottom: 10px;
+}
+
+#search {
+    width: 100%;
+    
+    max-width: 500px;
+    padding: 15px 30px;
+    background-color: rgba(52, 73, 94, 0.7);
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 1px white;
+    color: White;
+    margin-top: 10px;
+    font-size: 30px;
+    border-radius: 25px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+#search:focus {
+    background-color: white;
+    color: black;
+}
+
+/* Media Queries for Responsive Design */
+
+@media screen and (max-width: 1024px) {
+    .box {
+        width: calc(33.33% - 20px);
+        flex-basis: calc(33.33% - 20px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box {
+        width: calc(50% - 20px);
+        flex-basis: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .box {
+        width: 100%;
+        flex-basis: 100%;
+    }
+}
