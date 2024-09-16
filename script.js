@@ -11,11 +11,18 @@ let isFetching = false;
 const getMovies = async (url) => {
     if (isFetching) return;
     isFetching = true;
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    showMovies(data);
-    isFetching = false;
+    showLoading(true);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        showMovies(data);
+    } catch (error) {
+        console.error('Error fetching movies:', error);
+    } finally {
+        showLoading(false);
+        isFetching = false;
+    }
 };
 
 const showMovies = (data) => {
@@ -74,7 +81,18 @@ const loadMoreMovies = () => {
     }
 };
 
-window.addEventListener("scroll", loadMoreMovies);
+const handleScroll = debounce(loadMoreMovies, 200);
+window.addEventListener("scroll", handleScroll);
 
 // Initial load
 getMovies(APIURL);
+
+const showLoading = (show) => {
+    const loader = document.querySelector('#loader');
+    if (show) {
+        loader.style.display = 'block';
+    } else {
+        loader.style.display = 'none';
+    }
+};
+
